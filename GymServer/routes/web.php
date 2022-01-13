@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\MemberController;
+
 use App\Http\Controllers\ActivityController;
 
 /*
@@ -29,3 +32,5 @@ Route::delete('activities/store/{request}', [ActivityController::class, 'destroy
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('members',MemberController::class);
