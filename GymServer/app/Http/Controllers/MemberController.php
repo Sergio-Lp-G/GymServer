@@ -23,7 +23,7 @@ class MemberController extends Controller
      */
     public function create()
     {
-        //
+        return 'metodo crear';
     }
 
     /**
@@ -34,7 +34,8 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return 'metodo store';
+
     }
 
     /**
@@ -45,7 +46,8 @@ class MemberController extends Controller
      */
     public function show($id)
     {
-        //
+        return 'metodo show '.$id;
+        
     }
 
     /**
@@ -56,7 +58,7 @@ class MemberController extends Controller
      */
     public function edit($id)
     {
-        //
+        return 'metodo editar '.$id;
     }
 
     /**
@@ -68,7 +70,7 @@ class MemberController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return 'metodo update '.$id;
     }
 
     /**
@@ -79,6 +81,6 @@ class MemberController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return 'metodo destrucción '.$id;
     }
 }
