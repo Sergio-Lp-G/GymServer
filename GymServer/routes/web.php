@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\MemberController;
-
 use App\Http\Controllers\ActivityController;
 
 /*
@@ -34,3 +33,4 @@ Route::get('/', function () {
 });
 
 Route::resource('members',MemberController::class);
+
