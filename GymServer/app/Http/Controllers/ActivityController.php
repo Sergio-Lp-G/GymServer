@@ -13,7 +13,8 @@ class ActivityController extends Controller
      */
     public function index()
     {
-        return view('activities/index');
+        return view('activities.index', []);
+        //return view('activities/index');
     }
 
     /**
@@ -23,7 +24,8 @@ class ActivityController extends Controller
      */
     public function create()
     {
-        return view('activities/create');
+        return view('activities.create', []);
+        //return view('activities/create');
     }
 
     /**

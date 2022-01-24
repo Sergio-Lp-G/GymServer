@@ -16,9 +16,7 @@ class CreateActivitiesTable extends Migration
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('days');
-            $table->tinyInteger('sessions');
-            $table->string('schedule');
+            $table->string('description');
             $table->tinyInteger('duration');
             $table->tinyInteger('participants');
             $table->timestamps();

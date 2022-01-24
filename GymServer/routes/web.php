@@ -24,7 +24,7 @@ Route::get('activities/create', [ActivityController::class, 'create']);
 Route::get('activities/show/{id}', [ActivityController::class, 'show']);
 Route::get('activities/edit/{id}', [ActivityController::class, 'edit']);
 Route::post('activities', [ActivityController::class, 'store']);
-Route::put('activities/update/{request}/{id}', [ActivityController::class, 'destroy']);
+Route::put('activities/update/{request}/{id}', [ActivityController::class, 'update']);
 Route::delete('activities/store/{request}', [ActivityController::class, 'destroy']);
 
 
