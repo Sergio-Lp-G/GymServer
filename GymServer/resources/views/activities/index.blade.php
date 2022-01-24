@@ -24,7 +24,6 @@
                         <th>Duración</th>
                         <th>MaxParticipantes</th>
                     </tr>
-<<<<<<< HEAD
                      @forelse ($activities as $activity)
                      <tr>
                      <td>{{$activity->code}} </td>
@@ -38,21 +37,6 @@
                      <td colspan="3">No hay estudios registrados</td>
                      </tr>
                      @endforelse
-=======
-                    @forelse ($activities as $activity)
-                     <tr>
-                    <td>{{$activity->name}} </td>
-                    <td>{{$activity->name}} </td>
-                    <td>{{$activity->abreviation}} </td>
-                     <td> <a class="btn btn-primary btn-sm" href="/activities/{{$activity->id}}">Ver</a></td>
-                    <td> <a class="btn btn-primary btn-sm" href="/activities/{{$activity->id}}/edit">Editar</a></td>
-                     </tr>
-                     @empty
-                    <tr>
-                     <td colspan="3">No hay estudios registrados</td>
-                    </tr>
-                    @endforelse
->>>>>>> a94092a148824edd608aeba735323b2c859a62f1
                 </table>
 
 
