@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Activity;
 
 class ActivityController extends Controller
 {
@@ -13,8 +14,9 @@ class ActivityController extends Controller
      */
     public function index()
     {
-        return view('activities.index', []);
-        //return view('activities/index');
+        
+        $activities = Activity::all();
+        return view('activities.index', ['activities' => $activities]);
     }
 
     /**
@@ -60,7 +62,7 @@ class ActivityController extends Controller
      */
     public function edit($id)
     {
-//        return view('activities/edit');
+        //        return view('activities/edit');
         return 'Método edit';
     }
 
@@ -73,7 +75,7 @@ class ActivityController extends Controller
      */
     public function update(Request $request, $id)
     {
-//        return view('activities/update');
+        //        return view('activities/update');
         return 'Método update';
     }
 
@@ -85,7 +87,7 @@ class ActivityController extends Controller
      */
     public function destroy($id)
     {
-//        return view('activities/destroy');
+        //        return view('activities/destroy');
         return 'Método destroy';
     }
 }

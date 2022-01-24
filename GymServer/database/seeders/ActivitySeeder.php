@@ -1,8 +1,9 @@
 <?php
 
 namespace Database\Seeders;
-
 use App\Models\Activity;
+use DB;
+
 use Illuminate\Database\Seeder;
 
 class ActivitySeeder extends Seeder
