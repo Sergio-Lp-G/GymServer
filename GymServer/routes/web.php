@@ -16,6 +16,9 @@ use App\Http\Controllers\ActivityController;
 |
 */
 
+Route::get('/', function () {
+    return view('welcome');
+});
 Route::resource('activities', ActivityController::class);
 
 /*Route::get('activities/create', [ActivityController::class, 'create']);
@@ -28,9 +31,6 @@ Route::put('activities/update/{request}/{id}', [ActivityController::class, 'dest
 Route::delete('activities/store/{request}', [ActivityController::class, 'destroy']);*/
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::resource('members',MemberController::class);
+
 

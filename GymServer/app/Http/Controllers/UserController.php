@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Activity;
+use App\Models\User;
 
-class ActivityController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,11 +14,9 @@ class ActivityController extends Controller
      */
     public function index()
     {
-        $activities = Activity::all();
-        var_dump($activities);
-        
-        return view('activities.index', ['activities' => $activities]);
-    
+        $users = User::all();
+
+        return view ('user.index',['users'=>$users]);
     }
 
     /**
@@ -28,8 +26,7 @@ class ActivityController extends Controller
      */
     public function create()
     {
-        return view('activities.create', []);
-        //return view('activities/create');
+        //
     }
 
     /**
@@ -40,8 +37,7 @@ class ActivityController extends Controller
      */
     public function store(Request $request)
     {
-        //return view('activities/store');
-        return 'Metodo store';
+        //
     }
 
     /**
@@ -52,8 +48,7 @@ class ActivityController extends Controller
      */
     public function show($id)
     {
-        //return view('activities/show');
-        return 'Metodo show';
+        //
     }
 
     /**
@@ -64,8 +59,7 @@ class ActivityController extends Controller
      */
     public function edit($id)
     {
-        //        return view('activities/edit');
-        return 'Método edit';
+        //
     }
 
     /**
@@ -77,8 +71,7 @@ class ActivityController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //        return view('activities/update');
-        return 'Método update';
+        //
     }
 
     /**
@@ -89,7 +82,6 @@ class ActivityController extends Controller
      */
     public function destroy($id)
     {
-        //        return view('activities/destroy');
-        return 'Método destroy';
+        //
     }
 }

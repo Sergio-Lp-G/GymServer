@@ -1,34 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-
-    <h1>Lista de estudios</h1>
-    @extends('layout.app')
-    @section('content')
 
 
-    <div class="container">
 
 
-        <div class="row justify-content-center">
-            <div class="col-md-8">
+<div class="container">
 
 
-                <h1>Lista de estudios
-                    <a href="/activities/create" class="btn btn-primary float-right">
-                        Nuevo
-                    </a>
-                </h1>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
 
 
-                <table class="table table-striped">
+            <h1>Lista de estudios
+                <a href="/activities/create" class="btn btn-primary float-right">
+                    Nuevo
+                </a>
+            </h1>
+
+            <table class="table table-striped">
                     <tr>
                         <th>Nombre</th>
                         <th>Días</th>
@@ -37,6 +24,7 @@
                         <th>Duración</th>
                         <th>MaxParticipantes</th>
                     </tr>
+<<<<<<< HEAD
                      @forelse ($activities as $activity)
                      <tr>
                      <td>{{$activity->code}} </td>
@@ -50,19 +38,28 @@
                      <td colspan="3">No hay estudios registrados</td>
                      </tr>
                      @endforelse
+=======
+                    @forelse ($activities as $activity)
+                     <tr>
+                    <td>{{$activity->name}} </td>
+                    <td>{{$activity->name}} </td>
+                    <td>{{$activity->abreviation}} </td>
+                     <td> <a class="btn btn-primary btn-sm" href="/activities/{{$activity->id}}">Ver</a></td>
+                    <td> <a class="btn btn-primary btn-sm" href="/activities/{{$activity->id}}/edit">Editar</a></td>
+                     </tr>
+                     @empty
+                    <tr>
+                     <td colspan="3">No hay estudios registrados</td>
+                    </tr>
+                    @endforelse
+>>>>>>> a94092a148824edd608aeba735323b2c859a62f1
                 </table>
 
 
 
 
 
-            </div>
+
         </div>
     </div>
-    @endsection
-
-
-
-</body>
-
-</html>
+</div>
