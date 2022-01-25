@@ -20,6 +20,8 @@ use App\Http\Controllers\UserController;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::resource('users', UserController::class);
 Route::resource('activities', ActivityController::class);
 
 /*Route::get('activities/create', [ActivityController::class, 'create']);
@@ -31,12 +33,4 @@ Route::post('activities', [ActivityController::class, 'store']);
 Route::put('activities/update/{request}/{id}', [ActivityController::class, 'destroy']);
 Route::delete('activities/store/{request}', [ActivityController::class, 'destroy']);*/
 
-
-
-Route::resource('users', UserController::class);
-
-
-
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
