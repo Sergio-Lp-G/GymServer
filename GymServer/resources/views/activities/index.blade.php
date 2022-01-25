@@ -11,7 +11,7 @@
                 </a>
             </h1>
 
-            <table class="table table-striped">
+            <table class="table table-striped" border="1">
                 <tr>
                     <th>Nombre</th>
                     <th>Descripción</th>
@@ -33,12 +33,6 @@
                 </tr>
                 @endforelse
             </table>
-
-
-
-
-
-
         </div>
     </div>
 </div>

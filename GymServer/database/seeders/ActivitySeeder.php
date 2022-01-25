@@ -22,5 +22,12 @@ class ActivitySeeder extends Seeder
             'duration' => 50,
             'participants' => 25
         ]);
+
+        Activity::create([
+            'name' => 'yoga',
+            'description' => 'Siente como Mr. Fantastico y ElasticGirl', 
+            'duration' => 50,
+            'participants' => 25
+        ]);
     }
 }
