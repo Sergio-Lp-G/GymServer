@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\SesionController;
 use App\Http\Controllers\UserController;
+use App\Models\Sesion;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +25,7 @@ Route::get('/', function () {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('users', UserController::class);
 Route::resource('activities', ActivityController::class);
+Route::resource('sesions', SesionController::class);
 
 /*Route::get('activities/create', [ActivityController::class, 'create']);
 Route::get('activities', [ActivityController::class, 'index']);

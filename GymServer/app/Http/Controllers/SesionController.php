@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Sesion;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Carbon\CarbonInterval;
+use Carbon\CarbonPeriod;
+use DateTime;
 
 class SesionController extends Controller
 {
@@ -16,8 +19,20 @@ class SesionController extends Controller
     public function index()
     {
         $sesions = Sesion::all();
+
+        $inicio = new Carbon('2022-01-01 00:00:00');
+        $fin = new Carbon('2022-01-31 00:00:00');
+        $days = ['Monday', 'Friday'];
+        $arrDays=[];
+        foreach (CarbonPeriod::create($inicio, CarbonInterval::weeks(1), $fin, CarbonPeriod::IMMUTABLE) as $basedate) {
+            foreach($days as $dayName){
+                $date=$basedate->is($dayName) ? $basedate:$basedate->next($dayName);
+                array_push($arrDays,$date);
+            }
+        }
+
         // var_dump($sesions);
-        return view('sesions.index', ['sesions' => $sesions]);
+        return view('sesions.index', ['sesions' => $sesions, 'arrDays'=>$arrDays]);
     }
 
     /**
@@ -86,5 +101,18 @@ class SesionController extends Controller
         //
     }
 
-    // public function 
+    public function bgd() //DateTime $inicio
+    {
+        $inicio = DateTime::createFromFormat('j-M-Y', "1 de enero de 2022");
+        $fin = DateTime::createFromFormat('j-M-Y', "31 de diciembre de 2022");
+        $days = ['Monday', 'Friday'];
+        $arrDays=[];
+        foreach (CarbonPeriod::create($inicio, CarbonInterval::weeks(1), $fin, CarbonPeriod::IMMUTABLE) as $basedate) {
+            foreach($days as $dayName){
+                $date=$basedate->is($dayName) ? $basedate:$basedate->next($dayName);
+                array_push($arrDays,$date);
+            }
+        }
+        return view();
+    }
 }
