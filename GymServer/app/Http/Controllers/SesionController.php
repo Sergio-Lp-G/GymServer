@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Sesion;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class SesionController extends Controller
 {
@@ -14,7 +15,9 @@ class SesionController extends Controller
      */
     public function index()
     {
-        //
+        $sesions = Sesion::all();
+        // var_dump($sesions);
+        return view('sesions.index', ['sesions' => $sesions]);
     }
 
     /**
@@ -82,4 +85,6 @@ class SesionController extends Controller
     {
         //
     }
+
+    // public function 
 }

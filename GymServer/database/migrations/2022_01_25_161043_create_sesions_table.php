@@ -18,10 +18,6 @@ class CreateSesionsTable extends Migration
             $table->dateTime('startime');
             $table->dateTime('endtime');
             $table->timestamps();
-
-
-            $table->unsignedBigInteger('activity_id')->default(1);
-            $table->foreign('activity_id')->references('id')->on('activities');
         });
     }
 
@@ -33,11 +29,5 @@ class CreateSesionsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('sesions');
-
-
-        Schema::table('sesions', function (Blueprint $table) {
-            $table->dropForeign('sesions_activity_id_foreign');
-            $table->dropColumn('activity_id');
-        });
     }
 }

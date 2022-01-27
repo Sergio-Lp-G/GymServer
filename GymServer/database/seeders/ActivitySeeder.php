@@ -1,6 +1,7 @@
 <?php
 
 namespace Database\Seeders;
+
 use App\Models\Activity;
 use DB;
 
@@ -17,17 +18,24 @@ class ActivitySeeder extends Seeder
     {
 
         Activity::create([
-            'name' => 'Correr muchisimo',
-            'description' => 'Correr por correr porque por alguna razon te gusta sentirte fatal contigo mismo al ver que no aguantas corriendo ni 2 minutos', 
+            'name' => 'Correr muchisimo.',
+            'description' => 'Correr por correr porque por alguna razon te gusta sentirte fatal contigo mismo al ver que no aguantas corriendo ni 2 minutos.',
             'duration' => 50,
             'participants' => 25
         ]);
 
         Activity::create([
-            'name' => 'yoga',
-            'description' => 'Siente como Mr. Fantastico y ElasticGirl', 
+            'name' => 'Yoga.',
+            'description' => 'Siente como Mr. Fantastico y ElasticGirl.',
             'duration' => 50,
             'participants' => 25
+        ]);
+
+        Activity::create([
+            'name' => 'Boxing.',
+            'description' => 'Activa tu cuerpo al ritmo de boxeo.',
+            'duration' => 50,
+            'participants' => 20
         ]);
     }
 }
