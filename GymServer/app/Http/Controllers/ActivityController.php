@@ -15,10 +15,8 @@ class ActivityController extends Controller
     public function index()
     {
         $activities = Activity::all();
-        var_dump($activities);
-        
+        // var_dump($activities);
         return view('activities.index', ['activities' => $activities]);
-    
     }
 
     /**
@@ -92,4 +90,6 @@ class ActivityController extends Controller
         //        return view('activities/destroy');
         return 'Método destroy';
     }
+
+    
 }
