@@ -15,19 +15,22 @@ class SesionSeeder extends Seeder
     public function run()
     {
         Sesion::create([
-            'startime' => '1999-01-01 00:00:00',
-            'endtime' => '2000-01-01 12:00:00',
+            'date'=>'2022-01-25',
+            'startime' => '10:00:00',
+            'endtime' => '11:50:00',
             'activity_id'=>1
         ]);
         Sesion::create([
-            'startime' => '2022-01-25 12:00:00',
-            'endtime' => '2022-01-25 12:50:00',
-            'activity_id'=>1
-        ]);
-        Sesion::create([
-            'startime' => '2022-01-25 13:00:00',
-            'endtime' => '2022-01-25 13:50:00',
+            'date'=>'2022-01-25',
+            'startime' => '12:00:00',
+            'endtime' => '12:50:00',
             'activity_id'=>2
+        ]);
+        Sesion::create([
+            'date'=>'2022-01-25',
+            'startime' => '13:00:00',
+            'endtime' => '13:50:00',
+            'activity_id'=>3
         ]);
     }
 }

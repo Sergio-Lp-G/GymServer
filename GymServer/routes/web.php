@@ -36,19 +36,5 @@ Route::post('activities', [ActivityController::class, 'store']);
 Route::put('activities/update/{request}/{id}', [ActivityController::class, 'destroy']);
 Route::delete('activities/store/{request}', [ActivityController::class, 'destroy']);*/
 
-<<<<<<< HEAD
-
-
-
-
-
 Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-=======
-Auth::routes();
->>>>>>> f5c2e6c32446f551f498edbd59c0f21e5e4bf952
