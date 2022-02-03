@@ -15,8 +15,9 @@ class CreateSesionsTable extends Migration
     {
         Schema::create('sesions', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('startime');
-            $table->dateTime('endtime');
+            $table->date('date');
+            $table->time('startime');
+            $table->time('endtime');
             $table->timestamps();
         });
     }
