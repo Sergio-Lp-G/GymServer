@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Sesion;
+
 
 class UserController extends Controller
 {
@@ -14,8 +16,18 @@ class UserController extends Controller
      */
     public function index()
     {
+        $this->addsesion();
         $users = User::all();
-        return view ('users.index',['users'=>$users]);
+        return view('users.index', ['users' => $users]);
+    }
+    public function addsesion()
+    {
+        //necesitamos un id_usuario y un id_rol
+        $user = User::find(1);
+        $sesion = Sesion::find(1);
+        $user->addSesion($sesion);
+        $users = User::all();
+        return view('users.index', ['users' => $users]);
     }
 
     /**

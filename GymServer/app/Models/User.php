@@ -11,7 +11,15 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+    public function sesions()
+    {
+        return $this->belongsToMany(Sesion::class);
+    }
 
+    public function addSesion(Sesion $sesion)
+    {
+        $this->sesions()->attach($sesion);
+    }
     /**
      * The attributes that are mass assignable.
      *

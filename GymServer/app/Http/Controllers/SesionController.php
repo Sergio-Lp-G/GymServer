@@ -154,4 +154,8 @@ class SesionController extends Controller
         // return $sesions;
 
     }
+
+    public function sign( $id){
+        return "metodo sign.".$id;
+    }
 }
