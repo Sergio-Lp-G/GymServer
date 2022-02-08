@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Activity;
+use App\Models\Sesion;
 
 class ActivityController extends Controller
 {
@@ -65,6 +66,14 @@ class ActivityController extends Controller
         //        return view('activities/edit');
         return 'Método edit';
     }
+
+    public function filter (Request $request) {
+        $filter = $request->input('id');
+        $sesions = Sesion::where('activity_id', 'LIKE', "%$filter%")->get();
+        //return $studies; //devuelve JSON
+        //otra opción, devolver código html
+        return view('activities.ajax.filter', ['sesions'=>$sesions]);
+        }
 
     /**
      * Update the specified resource in storage.

@@ -7,6 +7,7 @@ use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\SesionController;
 use App\Http\Controllers\UserController;
 use App\Models\Sesion;
+use Database\Seeders\ActivitySeeder;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -25,6 +26,7 @@ Route::get('/', function () {
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('users', UserController::class);
+Route::post('/activities/filter', [ActivityController::class, 'filter']);
 Route::resource('activities', ActivityController::class);
 Route::resource('sesions', SesionController::class);
 Route::get('sesions/sign/{id}', [SesionController::class, 'sign']);

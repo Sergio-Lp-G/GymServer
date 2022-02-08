@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-
+@section('content')
     <h1>Actividad nº {{$activity->id}}</h1>
 
     <ul>
@@ -33,6 +25,18 @@
             {{ $activity->participants }}
         </li>
     </ul>
-</body>
+    <br>
+    <hr>
+        <h2>Busqueda Ajax</h2>
+        <form method="POST" id="formulario">
+            <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+            <input type="hidden" id="id" value="{{$activity->id}}">
+            {{-- <input type="text" id="filtro"> --}}
+            <input type="submit" id="buscar">
+        </form>
+        <br>
+        <div id="destinofiltro">
+            destino filtro...
+        </div>
 
-</html>
+@endsection
