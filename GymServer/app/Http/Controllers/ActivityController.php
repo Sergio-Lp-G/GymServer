@@ -50,9 +50,9 @@ class ActivityController extends Controller
      */
     public function show($id)
     {
-        //return view('activities/show');
-        return 'Metodo show';
-    }
+        $activity = Activity::find($id);
+        return view('activities.show',['activity' => $activity] );//
+    }   
 
     /**
      * Show the form for editing the specified resource.
