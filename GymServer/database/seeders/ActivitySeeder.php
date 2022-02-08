@@ -26,7 +26,7 @@ class ActivitySeeder extends Seeder
 
         Activity::create([
             'name' => 'Yoga.',
-            'description' => 'Siente como Mr. Fantastico y ElasticGirl.',
+            'description' => 'Siente como Mr. Fantastico y ElastiGirl.',
             'duration' => 50,
             'participants' => 25
         ]);

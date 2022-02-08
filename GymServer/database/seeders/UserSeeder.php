@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'User',
             'dni' => '12345678X',
-            'email' => 'Dessarrollo de app web',
+            'email' => 'user@password.es',
             'password' => 'password',
             'weight' => 80.00,
             'height' => 177.25,

@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Sesion;
 use Illuminate\Http\Request;
+use App\Models\Activity;
 use Carbon\Carbon;
 use Carbon\CarbonInterval;
 use Carbon\CarbonPeriod;
 use DateTime;
+
 
 class SesionController extends Controller
 {
@@ -18,21 +20,24 @@ class SesionController extends Controller
      */
     public function index()
     {
+
+        //$this->debug_fill_month();
+
         $sesions = Sesion::all();
 
-        $inicio = new Carbon('2022-01-01 00:00:00');
-        $fin = new Carbon('2022-01-31 00:00:00');
-        $days = ['Monday', 'Friday'];
-        $arrDays=[];
-        foreach (CarbonPeriod::create($inicio, CarbonInterval::weeks(1), $fin, CarbonPeriod::IMMUTABLE) as $basedate) {
-            foreach($days as $dayName){
-                $date=$basedate->is($dayName) ? $basedate:$basedate->next($dayName);
-                array_push($arrDays,$date);
-            }
-        }
+        // $inicio = new Carbon('2022-01-01 00:00:00');
+        // $fin = new Carbon('2022-01-31 00:00:00');
+        // $days = ['Monday', 'Friday'];
+        // $arrDays=[];
+        // foreach (CarbonPeriod::create($inicio, CarbonInterval::weeks(1), $fin, CarbonPeriod::IMMUTABLE) as $basedate) {
+        //     foreach($days as $dayName){
+        //         $date=$basedate->is($dayName) ? $basedate:$basedate->next($dayName);
+        //         array_push($arrDays,$date);
+        //     }
+        // }
 
-        // var_dump($sesions);
-        return view('sesions.index', ['sesions' => $sesions, 'arrDays'=>$arrDays]);
+        //dd($sesions);
+        return view('sesions.index', ['sesions' => $sesions]); //, 'arrDays' => $arrDays
     }
 
     /**
@@ -42,7 +47,8 @@ class SesionController extends Controller
      */
     public function create()
     {
-        //
+        $activity = Activity::all();
+        return view('sesions.create', ['activities' => $activity]);
     }
 
     /**
@@ -64,7 +70,8 @@ class SesionController extends Controller
      */
     public function show(Sesion $sesion)
     {
-        //
+        $activity = Activity::find($sesion->activity_id);
+        return view('sesions.show',['sesion' => $sesion,'activity'=>$activity ] );//
     }
 
     /**
@@ -75,7 +82,7 @@ class SesionController extends Controller
      */
     public function edit(Sesion $sesion)
     {
-        //
+        return view('sesions.edit',['sesion' => $sesion]);
     }
 
     /**
@@ -101,18 +108,54 @@ class SesionController extends Controller
         //
     }
 
-    public function bgd() //DateTime $inicio
+    public function debug_fill_month()
     {
-        $inicio = DateTime::createFromFormat('j-M-Y', "1 de enero de 2022");
-        $fin = DateTime::createFromFormat('j-M-Y', "31 de diciembre de 2022");
-        $days = ['Monday', 'Friday'];
-        $arrDays=[];
-        foreach (CarbonPeriod::create($inicio, CarbonInterval::weeks(1), $fin, CarbonPeriod::IMMUTABLE) as $basedate) {
-            foreach($days as $dayName){
-                $date=$basedate->is($dayName) ? $basedate:$basedate->next($dayName);
-                array_push($arrDays,$date);
+
+        $fechaInicio = Carbon::create(2000, 1, 35, 16, 0, 0);
+        $fechaFin = Carbon::create(2000, 1, 35, 20, 0, 0);
+
+        // $arrDias = ['Monday','Friday'];
+        $arrDias = ['Monday'];
+
+        // $activity = Activity::find( $id );
+        $activity = Activity::find(1);
+
+        // echo $fecha->hour;
+        // echo $fecha->minute;
+        // echo $fecha->second;
+
+        //var_dump( $this->fill_month( $activity, $fechaInicio, $fechaFin, $arrDias ) );
+
+    }
+
+    public function fill_month($activity, $fechaInicio, $fechaFin, $arrDias)
+    {
+
+        for ($i = 1; $i < $fechaInicio->daysInMonth + 1; ++$i) {
+
+            $horaInicio = Carbon::create($fechaInicio->year, $fechaInicio->month, $i, $fechaInicio->hour, $fechaInicio->minute, $fechaInicio->second);
+            $horaFin = Carbon::create($fechaFin->year, $fechaFin->month, $i, $fechaFin->hour, $fechaFin->minute, $fechaFin->second);
+
+            if (in_array($horaInicio->englishDayOfWeek, $arrDias)) {
+
+                $sesion = new Sesion;
+                $sesion->startime = $horaInicio->format('Y-m-d h:i:s');
+                $sesion->endtime = $horaFin->format('Y-m-d h:i:s');
+                $sesion->activity_id = $activity->id;
+                $sesion->save();
+
+                // $sesions[] = $sesion;
+                // echo $dia->englishDayOfWeek;
             }
+
+            // $dates[] = Carbon::createFromDate($fecha->year, $fecha->month, $i, $fecha->hour, $fecha->minute,$fecha->second )->format('Y-m-d h:i:s');
         }
-        return view();
+
+        // return $sesions;
+
+    }
+
+    public function sign( $id){
+        return "metodo sign.".$id;
     }
 }

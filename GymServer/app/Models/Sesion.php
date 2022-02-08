@@ -8,7 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Sesion extends Model
 {
     use HasFactory;
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
 
+    public function signUsers($user)
+    {
+        
+        // return $this->belongsToMany(User::class);
+    }
 
     //carbon modificar fechas de d-m-y a y-m-d y viceversa??
     //esto al modelo, cazurros. Añadir al modelo este atributo. columnas 
