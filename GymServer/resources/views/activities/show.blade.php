@@ -40,7 +40,9 @@
         </div>
 
         <div id="sessions">
-            
+            {{dump($activity->sesions)}}
+            {{--@foreach($activity->sesions as $sesion)--}}
+            {{--<li>{{$sesion}}</li>--}}
         </div>
 
 @endsection
