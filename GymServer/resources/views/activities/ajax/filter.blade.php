@@ -19,5 +19,8 @@
 <tr>
     <td colspan="3">No hay estudios registrados</td>
 </tr>
+
 @endforelse
 </table>
+
+

@@ -69,8 +69,8 @@ class ActivityController extends Controller
 
     public function filter (Request $request) {
         $filter = $request->input('id');
-        $sesions = Sesion::where('activity_id', 'LIKE', "%$filter%")->get();
-        //return $studies; //devuelve JSON
+        $sesions = Sesion::where('activity_id', 'LIKE', $filter)->get();
+        return json_decode($sesions); //devuelve JSON
         //otra opción, devolver código html
         return view('activities.ajax.filter', ['sesions'=>$sesions]);
         }

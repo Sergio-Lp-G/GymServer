@@ -39,4 +39,8 @@
             destino filtro...
         </div>
 
+        <div id="sessions">
+            
+        </div>
+
 @endsection
