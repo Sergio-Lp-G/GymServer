@@ -27,22 +27,15 @@
     </ul>
     <br>
     <hr>
-        <h2>Busqueda Ajax</h2>
+        <h2>Sesiones:</h2>
         <form method="POST" id="formulario">
             <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
-            <input type="hidden" id="id" value="{{$activity->id}}">
-            {{-- <input type="text" id="filtro"> --}}
-            <input type="submit" id="buscar">
+            <input type="hidden" id="sesions" value="{{$activity->sesions}}">
+            
         </form>
         <br>
         <div id="destinofiltro">
             destino filtro...
-        </div>
-
-        <div id="sessions">
-            {{dump($activity->sesions)}}
-            {{--@foreach($activity->sesions as $sesion)--}}
-            {{--<li>{{$sesion}}</li>--}}
         </div>
 
 @endsection

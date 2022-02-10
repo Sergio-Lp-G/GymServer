@@ -1,9 +1,9 @@
 console.log("enlazado");
 
-$('#buscar').click(function(e) {
-    e.preventDefault();
+$(document).ready(function(e) {
+    //e.preventDefault();
     console.log("ha hecho click");
-    data = $('#id').val();
+    data = $('#sesions').val();
     console.log(data);
 
     $.ajax({
@@ -13,7 +13,7 @@ $('#buscar').click(function(e) {
 
         data: {
             _token: $('#token').val(),
-            filter: data
+            filter: JSON.parse(data)
         },
 
         type: 'POST',
@@ -31,12 +31,7 @@ $('#buscar').click(function(e) {
 
     });
 
-    // $.get("/activities/" + data + "/filter?filter=" + data, function(data, status) {
-    //     // console.log("Data: " + data + "\nStatus: " + status);
-    //     console.log(data);
-    //     $('#destinofiltro').html(data);
-    // });
-})
+});
 
 function grabar(data) {
     //recorrer el data y grabar en una tabla html

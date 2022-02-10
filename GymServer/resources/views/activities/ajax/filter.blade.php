@@ -1,4 +1,4 @@
-{{--<h1>filtro: {{ dd($filter) }}</h1>--}}
+{{-- <h1>filtro: {{ var_dump($sesions) }}</h1> --}}
 <table class="table table-striped">
 <tr>
     <th>Código</th>
@@ -6,21 +6,17 @@
     <th>Hora inicio</th>
     <th>Hora final</th>
 </tr>
-@forelse ($sesions as $sesion)
+ @foreach ($sesions as $sesion)
 <tr>
-    <td>{{$sesion->id}} </td>
-    <td>{{$sesion->date}} </td>
-    <td>{{$sesion->startime}} </td>
-    <td>{{$sesion->endtime}} </td>
-    <td> <a class="btn btn-primary btn-sm" href="/studies/{{$sesion->id}}">Ver</a></td>
-    <td> <a class="btn btn-primary btn-sm" href="/studies/{{$sesion->id}}/edit">Editar</a></td>
-</tr>
-@empty
-<tr>
-    <td colspan="3">No hay estudios registrados</td>
+    <td>{{$sesion['id']}} </td>
+    <td>{{$sesion['date']}} </td>
+    <td>{{$sesion['startime']}} </td>
+    <td>{{$sesion['endtime']}} </td>
+    <td> <a class="btn btn-primary btn-sm" href="/sesions/{{$sesion['id']}}">Ver</a></td>
+    <td> <a class="btn btn-primary btn-sm" href="/sesions/{{$sesion['id']}/edit">Editar</a></td>
 </tr>
 
-@endforelse
+@endforeach 
 </table>
 
 
