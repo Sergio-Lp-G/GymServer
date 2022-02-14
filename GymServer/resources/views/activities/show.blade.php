@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="container">
     <h1>Actividad nº {{$activity->id}}</h1>
 
     <ul>
@@ -27,15 +28,15 @@
     </ul>
     <br>
     <hr>
-        <h2>Sesiones:</h2>
-        <form method="POST" id="formulario">
-            <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
-            <input type="hidden" id="sesions" value="{{$activity->sesions}}">
-            
-        </form>
-        <br>
-        <div id="destinofiltro">
-            destino filtro...
-        </div>
+    <h2>Sesiones:</h2>
+    <form method="POST" id="formulario">
+        <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+        <input type="hidden" id="sesions" value="{{$activity->sesions}}">
 
+    </form>
+    <br>
+    <div id="destinofiltro">
+        destino filtro...
+    </div>
+</div>
 @endsection
