@@ -13,7 +13,7 @@
     <td>{{$sesion['startime']}} </td>
     <td>{{$sesion['endtime']}} </td>
     <td> <a class="btn btn-primary btn-sm" href="/sesions/{{$sesion['id']}}">Ver</a></td>
-    <td> <a class="btn btn-primary btn-sm" href="/sesions/{{$sesion['id']}/edit">Editar</a></td>
+    <td> <a class="btn btn-primary btn-sm" href="/sesions/{{$sesion['id']}}/edit">Editar</a></td>
 </tr>
 
 @endforeach 
