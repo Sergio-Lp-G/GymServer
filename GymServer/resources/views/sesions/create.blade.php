@@ -17,9 +17,7 @@
                         <option value="0">Nuleo</option>
                         @endforelse
                     </select>
-
                 </div>
-
                 <div>
                     <label for="date">Día</label>
                     <input type="date" name="date" id="date">

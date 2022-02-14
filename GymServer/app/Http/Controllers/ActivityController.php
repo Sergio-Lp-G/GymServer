@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Activity;
-use App\Models\Sesion;
+
 
 class ActivityController extends Controller
 {
@@ -40,7 +40,15 @@ class ActivityController extends Controller
     public function store(Request $request)
     {
         //return view('activities/store');
-        return 'Metodo store';
+        //dd($request);
+        $activity=new Activity;
+
+        $activity->name=$request->actividad;
+        $activity->description=$request->descripcion;
+        $activity->duration=$request->duracion;
+        $activity->participants=$request->maxPart;
+        $activity->save();
+        return redirect('/activities');
     }
 
     /**
@@ -69,25 +77,25 @@ class ActivityController extends Controller
 
     public function filter (Request $request) {
         // $filter = $request->input('id');
-        $sesions = $request->filter;
-        //$sesiones =$sesions;
-        //$sesions = Sesion::where('activity_id', 'LIKE', $filter)->get();
-        //return var_dump($sesions); //devuelve JSON
+        $activitys = $request->filter;
+        //$activityes =$activitys;
+        //$activitys = activity::where('activity_id', 'LIKE', $filter)->get();
+        //return var_dump($activitys); //devuelve JSON
         //otra opción, devolver código html
-        return view('activities.ajax.filter', ['sesions'=>$sesions]);
+        return view('activities.ajax.filter', ['activitys'=>$activitys]);
         }
 
     /**
-     * Update the specified resource in storage.
+     * Upname the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function upname(Request $request, $id)
     {
-        //        return view('activities/update');
-        return 'Método update';
+        //        return view('activities/upname');
+        return 'Método upname';
     }
 
     /**

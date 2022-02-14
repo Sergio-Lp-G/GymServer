@@ -60,6 +60,17 @@ class SesionController extends Controller
     public function store(Request $request)
     {
         //
+        //dd($request);
+        //$sesion = Sesion::create($request->all()); no usar por peticion de Token desconocido
+        $sesion=new Sesion;
+
+        $sesion->date=$request->date;
+        $sesion->startime=$request->startime;
+        $sesion->endtime=$request->endtime;
+
+        $sesion->activity_id=$request->activity;
+        $sesion->save();
+        return redirect('/sesions');
     }
 
     /**
