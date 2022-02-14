@@ -8,11 +8,10 @@ $(document).ready(function(e) {
 
     $.ajax({
         url: "/activities/filter",
-
         headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
 
         data: {
-            _token: $('#token').val(),
+            //_token: $('#token').val(),
             filter: JSON.parse(data)
         },
 
