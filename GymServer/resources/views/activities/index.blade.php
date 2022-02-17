@@ -10,7 +10,10 @@
 
             <h1>Lista de actividades.<br>
                 <a href="/activities/create" class="btn btn-primary float-right">
-                    Nueva actividad.
+                    Nueva actividad
+                </a>
+                <a href="/activities/search" class="btn btn-secondary float-right">
+                    Buscar actividades
                 </a>
             </h1>
 

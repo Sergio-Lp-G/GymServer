@@ -76,10 +76,10 @@ class ActivityController extends Controller
     }
 
     public function filter (Request $request) {
-        // $filter = $request->input('id');
+        // id = $request->input('id');
         $sesions = $request->filter;
         //$activityes =$activitys;
-        //$activitys = activity::where('activity_id', 'LIKE', $filter)->get();
+        //$activitys = activity::where('activity_id', 'LIKE', id)->get();
         //return var_dump($activitys); //devuelve JSON
         //otra opción, devolver código html
         return view('activities.ajax.filter', ['sesions'=>$sesions]);
@@ -108,6 +108,20 @@ class ActivityController extends Controller
     {
         //        return view('activities/destroy');
         return 'Método destroy';
+    }
+
+    public function search(Request $request)
+    {
+        $activities = Activity::all();
+        return view('activities.search', ['activities' => $activities]);
+    }
+
+    public function busqueda(Request $request)
+    {
+        //dd($request->filtro);
+        $id = $request->filter;
+        $activity = Activity::find($id);
+        return view('activities.ajax.searchactividades', ['actividad' => $activity]);
     }
 
     

@@ -34,6 +34,9 @@
         <input type="hidden" id="sesions" value="{{$activity->sesions}}">
 
     </form>
+
+    <input type="button" id="buscarSesiones" value="Buscar sesiones"  class="btn btn-primary float-right">
+
     <br>
     <div id="destinofiltro">
         destino filtro...
