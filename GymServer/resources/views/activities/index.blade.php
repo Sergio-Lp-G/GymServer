@@ -9,7 +9,6 @@
 
 
             <h1>Lista de actividades.<br>
-            @if ($user->role==)
                 <a href="/activities/create" class="btn btn-primary float-right">
                     Nueva actividad.
                 </a>
