@@ -24,7 +24,7 @@
         </li>
         <li>
             <strong>Altura</strong>
-            {{ $user->weight }} cm
+            {{ $user->height }} cm
         </li>
         <li>
             <strong>Cumpleaños</strong>
