@@ -25,7 +25,8 @@ class UserSeeder extends Seeder
             'weight' => 80.00,
             'height' => 177.25,
             'birthday' => DateTime::createFromFormat('Y-m-d H:i:s','2000-01-01 00:00:00'),
-            'gender'=>'m'
+            'gender'=>'m',
+            'role_name'=>'admin'
         ]);
 
     }

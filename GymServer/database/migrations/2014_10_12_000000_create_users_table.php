@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->float('height')->nullable();
             $table->date('birthday')->nullable();
             $table->string('gender')->nullable();
-            $table->enum('role_name', ['admin', 'user']);
+            $table->enum('role_name', ['admin', 'user'])->default('user');
             $table->rememberToken();
             $table->timestamps();
         });

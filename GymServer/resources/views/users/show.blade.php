@@ -20,11 +20,11 @@
         </li>
         <li>
             <strong>Peso</strong>
-            {{ $user->weight }}
+            {{ $user->weight }} kg
         </li>
         <li>
             <strong>Altura</strong>
-            {{ $user->weight }}
+            {{ $user->weight }} cm
         </li>
         <li>
             <strong>Cumpleaños</strong>
@@ -33,6 +33,10 @@
         <li>
             <strong>Genero</strong>
             {{ $user->gender }}
+        </li>
+        <li>
+            <strong>Rol</strong>
+            {{ $user->role_name}}
         </li>
     </ul>
 </div>
