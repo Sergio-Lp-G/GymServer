@@ -17,15 +17,14 @@
             <table class="table table-striped">
                 <tr>
                     <th>Nombre</th>
-                    <th>Descripción</th>
-                    <th>Duración</th>
-                    <th>MaxParticipantes</th>
+                    <th>Email</th>
+                    <th> </th>
+                    <th> </th>
                 </tr>
                 @forelse ($users as $user)
                 <tr>
                     <td>{{$user->name}} </td>
-                    <td>{{$user->description}} </td>
-                    <td>{{$user->duration}} </td>
+                    <td>{{$user->email}} </td>
                     <td>{{$user->participants}} </td>
                     <td> <a class="btn btn-primary btn-sm" href="/users/{{$user->id}}">Ver</a></td>
                     <td> <a class="btn btn-primary btn-sm" href="/users/{{$user->id}}/edit">Editar</a></td>

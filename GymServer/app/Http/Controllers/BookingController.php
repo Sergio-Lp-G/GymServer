@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
 use Illuminate\Http\Request;
-use App\Models\User;
-use App\Models\Sesion;
 
-
-class UserController extends Controller
+class BookingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,18 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $this->addsesion();
-        $users = User::all();
-        return view('users.index', ['users' => $users]);
-    }
-    public function addsesion()
-    {
-        //necesitamos un id_usuario y un id_rol
-        $user = User::find(1);
-        $sesion = Sesion::find(1);
-        $user->addSesion($sesion);
-        $users = User::all();
-        return view('users.index', ['users' => $users]);
+        //
     }
 
     /**
@@ -54,22 +41,21 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Booking  $booking
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Booking $booking)
     {
-        $user = User::find($id);
-        return view('users.show', ['user' => $user]);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Booking  $booking
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Booking $booking)
     {
         //
     }
@@ -78,10 +64,10 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Booking  $booking
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Booking $booking)
     {
         //
     }
@@ -89,10 +75,10 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Booking  $booking
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Booking $booking)
     {
         //
     }
