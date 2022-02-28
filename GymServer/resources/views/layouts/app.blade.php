@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,7 +32,8 @@
     <!-- <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet"> -->
 
 </head>
-<body >
+
+<body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -45,8 +47,20 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
+                    @auth
                         <li class="nav-item">
+                            @if (Auth::user()->role_name == 'admin' )
                             <a class="nav-link" href="{{ url('/users') }}">Usuarios</a>
+                            @endif
+                            @if (Auth::user()->role_name == 'user')
+
+                            <a class="nav-link" href="/users/{{Auth::user()->id}}">Usuarios</a>
+                            @endif
+                            {{-- <a class="nav-link" href="#">
+                                {{Auth::user()->role_name}}
+                            </a> --}}
+
+
                         </li>
 
                         <li class="nav-item">
@@ -56,7 +70,8 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/activities') }}">Actividades</a>
                         </li>
-                       
+                        @endauth
+
 
                     </ul>
 
@@ -64,25 +79,25 @@
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
+                        @if (Route::has('login'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        </li>
+                        @endif
 
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
+                        @if (Route::has('register'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        </li>
+                        @endif
                         @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link " href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link " href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }}
+                            </a>
 
 
-                                <!-- <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -92,14 +107,14 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
-                                </div> -->
-                            </li>
-                            <li class="nav-item">
+                                </div>
+                        </li>
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
-                    </a>
-                            </li>
+                                {{ __('Logout') }}
+                            </a>
+                        </li> -->
                         @endguest
                     </ul>
                 </div>
@@ -111,4 +126,5 @@
         </main>
     </div>
 </body>
+
 </html>
