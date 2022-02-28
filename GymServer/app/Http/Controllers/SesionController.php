@@ -20,24 +20,12 @@ class SesionController extends Controller
      */
     public function index()
     {
-
         //$this->debug_fill_month();
-
         $sesions = Sesion::all();
+        $activity = Activity::all();
 
-        // $inicio = new Carbon('2022-01-01 00:00:00');
-        // $fin = new Carbon('2022-01-31 00:00:00');
-        // $days = ['Monday', 'Friday'];
-        // $arrDays=[];
-        // foreach (CarbonPeriod::create($inicio, CarbonInterval::weeks(1), $fin, CarbonPeriod::IMMUTABLE) as $basedate) {
-        //     foreach($days as $dayName){
-        //         $date=$basedate->is($dayName) ? $basedate:$basedate->next($dayName);
-        //         array_push($arrDays,$date);
-        //     }
-        // }
-
-        //dd($sesions);
-        return view('sesions.index', ['sesions' => $sesions]); //, 'arrDays' => $arrDays
+        
+        return view('sesions.index', ['sesions' => $sesions, 'activity' => $activity]); //, 'arrDays' => $arrDays
     }
 
     /**
@@ -62,13 +50,13 @@ class SesionController extends Controller
         //
         //dd($request);
         //$sesion = Sesion::create($request->all()); no usar por peticion de Token desconocido
-        $sesion=new Sesion;
+        $sesion = new Sesion;
 
-        $sesion->date=$request->date;
-        $sesion->startime=$request->startime;
-        $sesion->endtime=$request->endtime;
+        $sesion->date = $request->date;
+        $sesion->startime = $request->startime;
+        $sesion->endtime = $request->endtime;
 
-        $sesion->activity_id=$request->activity;
+        $sesion->activity_id = $request->activity;
         $sesion->save();
         return redirect('/sesions');
     }
@@ -82,7 +70,7 @@ class SesionController extends Controller
     public function show(Sesion $sesion)
     {
         $activity = Activity::find($sesion->activity_id);
-        return view('sesions.show',['sesion' => $sesion,'activity'=>$activity ] );//
+        return view('sesions.show', ['sesion' => $sesion, 'activity' => $activity]); //
     }
 
     /**
@@ -93,7 +81,7 @@ class SesionController extends Controller
      */
     public function edit(Sesion $sesion)
     {
-        return view('sesions.edit',['sesion' => $sesion]);
+        return view('sesions.edit', ['sesion' => $sesion]);
     }
 
     /**
@@ -166,7 +154,8 @@ class SesionController extends Controller
 
     }
 
-    public function sign( $id){
-        return "metodo sign.".$id;
+    public function sign($id)
+    {
+        return "metodo sign." . $id;
     }
 }

@@ -41,12 +41,12 @@ class ActivityController extends Controller
     {
         //return view('activities/store');
         //dd($request);
-        $activity=new Activity;
+        $activity = new Activity;
 
-        $activity->name=$request->actividad;
-        $activity->description=$request->descripcion;
-        $activity->duration=$request->duracion;
-        $activity->participants=$request->maxPart;
+        $activity->name = $request->actividad;
+        $activity->description = $request->descripcion;
+        $activity->duration = $request->duracion;
+        $activity->participants = $request->maxPart;
         $activity->save();
         return redirect('/activities');
     }
@@ -60,8 +60,8 @@ class ActivityController extends Controller
     public function show($id)
     {
         $activity = Activity::find($id);
-        return view('activities.show',['activity' => $activity] );//
-    }   
+        return view('activities.show', ['activity' => $activity]); //
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -71,31 +71,43 @@ class ActivityController extends Controller
      */
     public function edit($id)
     {
-        //        return view('activities/edit');
-        return 'Método edit';
+        $activity = Activity::find($id);
+        return view('activities.edit', ['activity' => $activity]);
     }
 
-    public function filter (Request $request) {
+    public function filter(Request $request)
+    {
         // id = $request->input('id');
         $sesions = $request->filter;
         //$activityes =$activitys;
         //$activitys = activity::where('activity_id', 'LIKE', id)->get();
         //return var_dump($activitys); //devuelve JSON
         //otra opción, devolver código html
-        return view('activities.ajax.filter', ['sesions'=>$sesions]);
-        }
+        return view('activities.ajax.filter', ['sesions' => $sesions]);
+    }
 
     /**
-     * Upname the specified resource in storage.
+     * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function upname(Request $request, $id)
+    public function update(Request $request, Activity $activity)
     {
-        //        return view('activities/upname');
-        return 'Método upname';
+        //        return view('activities/update');
+        // return 'Método update';
+
+
+        $activity->id = $request->id;
+
+        $activity->name = $request->name;
+        $activity->description = $request->description;
+        $activity->duration = $request->duration;
+        $activity->participants = $request->participants;
+
+        $activity->save();
+        return redirect('/activities');
     }
 
     /**
@@ -123,6 +135,4 @@ class ActivityController extends Controller
         $activity = Activity::find($id);
         return view('activities.ajax.searchactividades', ['actividad' => $activity]);
     }
-
-    
 }

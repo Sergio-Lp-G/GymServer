@@ -12,21 +12,27 @@
 
             </h1>
             <input type="button" value="Crear" onclick="location.href='/sesions/create'">
-            
+
 
             <table class="table table-striped" border="1">
                 <tr>
-                    <th>inicio</th>
+                    <th>Fecha</th>
                     <th>fin</th>
                     <th>Duración</th>
+                    <th>Actividad</th>
                     <th></th>
                     <th></th>
                 </tr>
                 @forelse ($sesions as $sesion)
                 <tr>
+                    <td>{{$sesion->date}} </td>
                     <td>{{$sesion->startime}} </td>
                     <td>{{$sesion->endtime}} </td>
                     <td>{{$sesion->duration}} </td>
+                    <td>{{$sesion->activity_id}} </td>
+                    
+                    {{-- <td>{{$sesion->$activity->name}}</td> --}}
+
                     <td> <a class="btn btn-primary btn-sm" href="/sesions/{{$sesion->id}}">Ver</a></td>
                     <td> <a class="btn btn-primary btn-sm" href="/sesions/{{$sesion->id}}/edit">Editar</a></td>
                 </tr>

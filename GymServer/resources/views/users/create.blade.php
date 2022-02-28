@@ -63,6 +63,15 @@
                 </div>
                 <br>
                 <div>
+                    <label for="role_name">Rol</label>
+                    <br>
+                    <select name="role_name" id="role_name" class="selectpicker" aria-label="size 5 select example">
+                        <option value="user">Usuario</option>
+                        <option value="admin">Administrador</option>
+                    </select>
+                </div>
+                <br>
+                <div>
                     <input type="submit" value="crear">
                 </div>
             </form>
