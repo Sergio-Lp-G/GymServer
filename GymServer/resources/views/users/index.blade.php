@@ -18,6 +18,8 @@
                 <tr>
                     <th>Nombre</th>
                     <th>Email</th>
+                    <th>Rol</th>
+
                     <th> </th>
                     <th> </th>
                 </tr>
@@ -25,6 +27,8 @@
                 <tr>
                     <td>{{$user->name}} </td>
                     <td>{{$user->email}} </td>
+                    <td>{{$user->role_name}} </td>
+
                     <td> <a class="btn btn-primary btn-sm" href="/users/{{$user->id}}">Ver</a></td>
                     <td> <a class="btn btn-primary btn-sm" href="/users/{{$user->id}}/edit">Editar</a></td>
                 </tr>

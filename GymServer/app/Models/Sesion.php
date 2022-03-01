@@ -13,9 +13,10 @@ class Sesion extends Model
 {
     use HasFactory;
 
-    public function activities() 
+    public function activities()
     {
-        return $this->belongsToMany(Activity::class);
+        //relacion 1:N 1 actividad tiene muchas sesiones, una sesion pertenece a una actividad
+        return $this->belongsTo(Activity::class);
     }
 
     public function users()
@@ -25,7 +26,7 @@ class Sesion extends Model
 
     public function signUsers($user)
     {
-        
+
         // return $this->belongsToMany(User::class);
     }
 

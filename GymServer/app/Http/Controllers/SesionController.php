@@ -24,7 +24,7 @@ class SesionController extends Controller
         $sesions = Sesion::all();
         $activity = Activity::all();
 
-        
+
         return view('sesions.index', ['sesions' => $sesions, 'activity' => $activity]); //, 'arrDays' => $arrDays
     }
 
@@ -47,18 +47,50 @@ class SesionController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        //dd($request);
-        //$sesion = Sesion::create($request->all()); no usar por peticion de Token desconocido
-        $sesion = new Sesion;
 
-        $sesion->date = $request->date;
-        $sesion->startime = $request->startime;
-        $sesion->endtime = $request->endtime;
+        $rules = [
+            'days' => 'required',
+            'month' => 'required',
+            'year' => 'required',
+            'startime' => 'required',
+            'endtime' => 'required',
+            'activity' => 'required'
+        ];
+        $request->validate($rules);
 
-        $sesion->activity_id = $request->activity;
-        $sesion->save();
-        return redirect('/sesions');
+        // $sesion = new Sesion;
+
+        // $sesion->date = $request->date;
+        // $sesion->startime = $request->startime;
+        // $sesion->endtime = $request->endtime;
+
+        // $sesion->activity_id = $request->activity;
+        // $sesion->save();
+
+        $year = $request->year;
+        $month = $request->month;
+
+        $arrDias = $request->days;
+
+        //return var_dump($arrDias);
+        $horaInicio = $request->startime;
+        $hi = explode(":", $horaInicio)[0];
+        $mi = explode(":", $horaInicio)[1];
+        $fechaInicio = Carbon::create($year, $month, 1, $hi, $mi, 0);
+
+        $horaFin = $request->endtime;
+        $hf = explode(":", $horaFin)[0];
+        $mf = explode(":", $horaFin)[1];
+        $fechaFin = Carbon::create($year, $month, 31, $hf, $mf, 0);
+
+        $activity_id = $request->activity;
+        //var_dump($fechaFin);
+
+        // echo $fecha->hour;
+        // echo $fecha->minute;
+        // echo $fecha->second;
+
+        $this->fill_month($activity_id, $fechaInicio, $fechaFin, $arrDias);
     }
 
     /**
@@ -94,6 +126,9 @@ class SesionController extends Controller
     public function update(Request $request, Sesion $sesion)
     {
         //
+
+
+
     }
 
     /**
@@ -127,7 +162,7 @@ class SesionController extends Controller
 
     }
 
-    public function fill_month($activity, $fechaInicio, $fechaFin, $arrDias)
+    public function fill_month($activity_id, $fechaInicio, $fechaFin, $arrDias)
     {
 
         for ($i = 1; $i < $fechaInicio->daysInMonth + 1; ++$i) {
@@ -140,7 +175,7 @@ class SesionController extends Controller
                 $sesion = new Sesion;
                 $sesion->startime = $horaInicio->format('Y-m-d h:i:s');
                 $sesion->endtime = $horaFin->format('Y-m-d h:i:s');
-                $sesion->activity_id = $activity->id;
+                $sesion->activity_id = $activity_id;
                 $sesion->save();
 
                 // $sesions[] = $sesion;
@@ -151,7 +186,7 @@ class SesionController extends Controller
         }
 
         // return $sesions;
-
+        return redirect('/sesions');
     }
 
     public function sign($id)

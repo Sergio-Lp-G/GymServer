@@ -9,9 +9,15 @@
 
 
             <h1>Lista de actividades.<br>
+                @auth
+                @if (Auth::user()->role_name == 'admin' )
                 <a href="/activities/create" class="btn btn-primary float-right">
                     Nueva actividad
                 </a>
+                @endif
+
+                @endauth
+
                 <a href="/activities/search" class="btn btn-secondary float-right">
                     Buscar actividades
                 </a>
@@ -35,7 +41,15 @@
                     <td>{{$activity->participants}} </td>
                     <td>...</td>
                     <td> <a class="btn btn-primary btn-sm" href="/activities/{{$activity->id}}">Ver</a></td>
+
+                    @auth
+                    @if (Auth::user()->role_name == 'admin' )
                     <td> <a class="btn btn-primary btn-sm" href="/activities/{{$activity->id}}/edit">Editar</a></td>
+                    @endif
+                    <td> </td>
+                    @endauth
+
+
                 </tr>
                 @empty
                 <tr>

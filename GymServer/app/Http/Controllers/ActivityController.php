@@ -39,6 +39,14 @@ class ActivityController extends Controller
      */
     public function store(Request $request)
     {
+        $rules = [
+            'name' => 'required',
+            'description' => 'required',
+            'duration' => 'required',
+            'participants' => 'required'
+        ];
+        $request->validate($rules);
+
         //return view('activities/store');
         //dd($request);
         $activity = new Activity;
@@ -95,8 +103,13 @@ class ActivityController extends Controller
      */
     public function update(Request $request, Activity $activity)
     {
-        //        return view('activities/update');
-        // return 'Método update';
+        $rules = [
+            'name' => 'required',
+            'description' => 'required',
+            'duration' => 'required',
+            'participants' => 'required'
+        ];
+        $request->validate($rules);
 
 
         $activity->id = $request->id;

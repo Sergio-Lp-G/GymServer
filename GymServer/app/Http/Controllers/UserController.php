@@ -48,11 +48,24 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $rules = [
+            'name' => 'required',
+            'dni' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'weight' => 'required',
+            'height' => 'required',
+            'birthday' => 'required',
+            'gender' => 'required',
+            'role_name' => 'required'
+        ];
+        $request->validate($rules);
+
+
         $user = new User;
 
         $user->name = $request->name;
         $user->dni = $request->dni;
-
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->weight = $request->weight;
@@ -98,16 +111,26 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //$user = User::find($id);
+        $rules = [
+            'id' => 'required',
+            'name' => 'required',
+            'dni' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'weight' => 'required',
+            'height' => 'required',
+            'birthday' => 'required',
+            'gender' => 'required',
+            'role_name' => 'required'
+        ];
+        $request->validate($rules);
+        
         $user->id = $request->id;
 
         $user->name = $request->name;
         $user->dni = $request->dni;
-
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
-
-
         $user->weight = $request->weight;
         $user->height = $request->height;
         $user->birthday = $request->birthday;

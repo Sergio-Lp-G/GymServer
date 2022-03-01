@@ -8,18 +8,23 @@
         <div class="col-md-8">
 
 
-            <h1>Lista de sesiones.<br>
+            <h1>Lista de sesiones.<br></h1>
 
-            </h1>
+            @auth
+            @if (Auth::user()->role_name == 'admin' )
             <input type="button" value="Crear" onclick="location.href='/sesions/create'">
+            @endif
+
+            @endauth
+
 
 
             <table class="table table-striped" border="1">
                 <tr>
                     <th>Fecha</th>
-                    <th>fin</th>
-                    <th>Duración</th>
-                    <th>Actividad</th>
+                    <th>Inicio</th>
+                    <th>Fin</th>
+                    <th>Actividad Id</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -28,13 +33,17 @@
                     <td>{{$sesion->date}} </td>
                     <td>{{$sesion->startime}} </td>
                     <td>{{$sesion->endtime}} </td>
-                    <td>{{$sesion->duration}} </td>
                     <td>{{$sesion->activity_id}} </td>
-                    
-                    {{-- <td>{{$sesion->$activity->name}}</td> --}}
-
                     <td> <a class="btn btn-primary btn-sm" href="/sesions/{{$sesion->id}}">Ver</a></td>
+                    @auth
+                    @if (Auth::user()->role_name == 'admin' )
                     <td> <a class="btn btn-primary btn-sm" href="/sesions/{{$sesion->id}}/edit">Editar</a></td>
+                    @endif
+                    <td> </td>
+                    @endauth
+
+
+
                 </tr>
                 @empty
                 <tr>
