@@ -2,25 +2,23 @@
 
 @section('content')
 <div class="container">
-
-
     <div class="row justify-content-center">
         <div class="col-md-8">
 
 
-            <h1>Lista de actividades.<br>
-                <a href="/activities/create" class="btn btn-primary float-right">
-                    Nueva actividad
+            <h1>Reservas<br>
+                <a href="/bookings/create" class="btn btn-primary float-right">
+                    Nueva reserva
                 </a>
-                <a href="/activities/search" class="btn btn-secondary float-right">
-                    Buscar actividades
+                <a href="/bookings/search" class="btn btn-secondary float-right">
+                    Buscar reserva
                 </a>
             </h1>
 
             <table class="table table-striped" border="1">
                 <tr>
-                    <th>Nombre</th>
-                    <th>Descripción</th>
+                    <th>Actividad</th>
+                    <th>Fecha</th>
                     <th>Duración</th>
                     <th>MaxParticipantes</th>
                     <th>Sesiones</th>

@@ -24,9 +24,12 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/',  [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('users', UserController::class)->middleware('auth');//para controlar que solo los registrados entren
+
 Route::get('/activities/busqueda', [ActivityController::class, 'busqueda']);
 Route::get('/activities/search', [ActivityController::class, 'search']);
 Route::post('/activities/filter', [ActivityController::class, 'filter']);
+
+Route::resource('bookings', BookingController::class)->middleware('auth');
 Route::resource('activities', ActivityController::class)->middleware('auth');
 Route::resource('sesions', SesionController::class)->middleware('auth');
 Route::get('sesions/sign/{id}', [SesionController::class, 'sign']);

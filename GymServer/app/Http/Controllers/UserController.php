@@ -20,6 +20,7 @@ class UserController extends Controller
         $users = User::all();
         return view('users.index', ['users' => $users]);
     }
+    
     public function addsesion()
     {
         //necesitamos un id_usuario y un id_rol
