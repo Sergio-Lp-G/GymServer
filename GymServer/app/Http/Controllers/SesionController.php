@@ -35,8 +35,8 @@ class SesionController extends Controller
      */
     public function create()
     {
-        $activity = Activity::all();
-        return view('sesions.create', ['activities' => $activity]);
+        $activities = Activity::all();
+        return view('sesions.create', ['activities' => $activities]);
     }
 
     /**
@@ -91,6 +91,9 @@ class SesionController extends Controller
         // echo $fecha->second;
 
         $this->fill_month($activity_id, $fechaInicio, $fechaFin, $arrDias);
+
+        // return redirect('/sesions');
+        return redirect('/activities');
     }
 
     /**
@@ -186,7 +189,7 @@ class SesionController extends Controller
         }
 
         // return $sesions;
-        return redirect('/sesions');
+        //return redirect('/sesions');
     }
 
     public function sign($id)
