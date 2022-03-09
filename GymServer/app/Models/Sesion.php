@@ -13,6 +13,8 @@ class Sesion extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['date', 'startime', 'endtime', 'activity_id'];
+
     public function activities()
     {
         //relacion 1:N 1 actividad tiene muchas sesiones, una sesion pertenece a una actividad

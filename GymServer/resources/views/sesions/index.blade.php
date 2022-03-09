@@ -12,7 +12,8 @@
 
             @auth
             @if (Auth::user()->role_name == 'admin' )
-            <input type="button" value="Crear" onclick="location.href='/sesions/create'">
+            <input type="button" class="btn btn-primary" value="Crear" onclick="location.href='/sesions/create'">
+            <br><br>
             @endif
 
             @endauth
@@ -26,7 +27,7 @@
                     <th>Fin</th>
                     <th>Actividad Id</th>
                     <th></th>
-                    <th></th>
+                    {{-- <th></th> --}}
                 </tr>
                 @forelse ($sesions as $sesion)
                 <tr>
@@ -35,12 +36,12 @@
                     <td>{{$sesion->endtime}} </td>
                     <td>{{$sesion->activity_id}} </td>
                     <td> <a class="btn btn-primary btn-sm" href="/sesions/{{$sesion->id}}">Ver</a></td>
-                    @auth
+                    {{-- @auth
                     @if (Auth::user()->role_name == 'admin' )
                     <td> <a class="btn btn-primary btn-sm" href="/sesions/{{$sesion->id}}/edit">Editar</a></td>
                     @endif
                     <td> </td>
-                    @endauth
+                    @endauth --}}
 
 
 
