@@ -16,8 +16,8 @@ class AddUsersToBookingsTable extends Migration
         Schema::table('bookings', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id')->default(1);
             $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedBigInteger('session_id')->default(1);
-            $table->foreign('session_id')->references('id')->on('sesions');
+            $table->unsignedBigInteger('sesion_id')->default(1);
+            $table->foreign('sesion_id')->references('id')->on('sesions');
         });
     }
 
@@ -31,8 +31,8 @@ class AddUsersToBookingsTable extends Migration
         Schema::table('bookings', function (Blueprint $table) {
             $table->dropForeign('booking_user_id_foreign');
             $table->dropColumn('user_id');
-            $table->dropForeign('booking_session_id_foreign');
-            $table->dropColumn('session_id');
+            $table->dropForeign('booking_sesion_id_foreign');
+            $table->dropColumn('sesion_id');
         });
     }
 }

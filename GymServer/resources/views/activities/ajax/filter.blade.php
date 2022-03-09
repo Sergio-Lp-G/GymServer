@@ -5,6 +5,8 @@
     <th>Día</th>
     <th>Hora inicio</th>
     <th>Hora final</th>
+    <th></th>
+
 </tr>
  @foreach ($sesions as $sesion)
 <tr>
@@ -13,7 +15,7 @@
     <td>{{$sesion['startime']}} </td>
     <td>{{$sesion['endtime']}} </td>
     <td> <a class="btn btn-primary btn-sm" href="/sesions/{{$sesion['id']}}">Ver</a></td>
-    <td> <a class="btn btn-primary btn-sm" href="/sesions/{{$sesion['id']}}/edit">Editar</a></td>
+    {{--<td> <a class="btn btn-primary btn-sm" href="/sesions/{{$sesion['id']}}/edit">Editar</a></td>--}}
 </tr>
 
 @endforeach 

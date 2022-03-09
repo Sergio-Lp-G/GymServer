@@ -17,27 +17,28 @@
 
             <table class="table table-striped" border="1">
                 <tr>
+                    <th>Reserva</th>
+                    <th>Usuario</th>
+                    <th>Sesion</th>
                     <th>Actividad</th>
-                    <th>Fecha</th>
-                    <th>Duración</th>
-                    <th>MaxParticipantes</th>
-                    <th>Sesiones</th>
+                    <th>Fecha de actividad</th>
                     <th></th>
                     <th></th>
                 </tr>
-                @forelse ($activities as $activity)
+                @forelse ($bookings as $booking)
                 <tr>
-                    <td>{{$activity->name}} </td>
-                    <td>{{$activity->description}} </td>
-                    <td>{{$activity->duration}} </td>
-                    <td>{{$activity->participants}} </td>
+                    <td>{{$booking->id}} </td>
+                    <td>{{$booking->user_id}} </td>
+                    <td>{{$booking->ssession_id}} </td>
+                    <td>{{$booking->activity_id}} </td>
+                    <td>{{$booking->activity_id->date}} </td>
                     <td>...</td>
-                    <td> <a class="btn btn-primary btn-sm" href="/activities/{{$activity->id}}">Ver</a></td>
-                    <td> <a class="btn btn-primary btn-sm" href="/activities/{{$activity->id}}/edit">Editar</a></td>
+                    <td> <a class="btn btn-primary btn-sm" href="/bookings/{{$booking->id}}">Ver</a></td>
+                    <td> <a class="btn btn-primary btn-sm" href="/bookings/{{$booking->id}}/edit">Editar</a></td>
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="3">No hay actividades registradas</td>
+                    <td colspan="3">No hay reservas registradas</td>
                 </tr>
                 @endforelse
             </table>
