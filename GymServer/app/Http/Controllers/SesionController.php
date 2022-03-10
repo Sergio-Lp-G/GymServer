@@ -23,23 +23,21 @@ class SesionController extends Controller
     {
         //Metodos para mostrar todas las sesiones con los nombres de actividades
 
-        //$sesions = Sesion::orderBy('date')->get();
+        $sesions = Sesion::orderBy('date')->get();
         //$sesions->activities; Esto no funciona
-        //return view('sesions.index', ['sesions' => $sesions]);
+        return view('sesions.index', ['sesions' => $sesions]);
 
 
-        //$activity = Activity::all();
-        //return view('sesions.index', ['sesions' => $sesions, 'activity' => $activity]); //No muestra todos los nombres de actividades
-
-
-        $sesions = DB::table('sesions') //Esta consulta tampoco muestra todos los nombres de las actividades
-            ->leftJoin('activities', 'sesions.id', '=', 'activities.id')
-            ->select('sesions.id', 'sesions.date', 'sesions.startime', 'sesions.endtime', 'sesions.activity_id', 'activities.name as activity_name')
-            ->orderBy('date')
-            ->get();
+        // $activity = Activity::all();
+        // return view('sesions.index', ['sesions' => $sesions, 'activity' => $activity]); //No muestra todos los nombres de actividades
+        // $sesions = DB::table('sesions') //Esta consulta tampoco muestra todos los nombres de las actividades
+        //     ->leftJoin('activities', 'sesions.id', '=', 'activities.id')
+        //     ->select('sesions.id', 'sesions.date', 'sesions.startime', 'sesions.endtime', 'sesions.activity_id', 'activities.name as activity_name')
+        //     ->orderBy('date')
+        //     ->get();
 
         //Devolvemos las sesiones a la vista
-        return view('sesions.index', ['sesions' => $sesions]); //, 'activity' => $activity
+        //return view('sesions.index', ['sesions' => $sesions]); //, 'activity' => $activity
 
     }
 
@@ -67,7 +65,7 @@ class SesionController extends Controller
         $rules = [
             'days' => 'required',
             'month' => 'required',
-            'year' => 'required',
+           
             'startime' => 'required',
             'endtime' => 'required',
             'activity' => 'required'

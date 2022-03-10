@@ -49,11 +49,11 @@
                     </select>
                 </div>
                 <br>
-                <div>
+                {{--<div>
                     <label for="year">Año</label>
                     <input type="number" min="2020" max="2100" name="year" id="year">
                 </div>
-                <br>
+                <br>--}}
                 <div>
                     <label for="startime">Inicio</label>
                     <input type="time" name="startime" id="startime">
