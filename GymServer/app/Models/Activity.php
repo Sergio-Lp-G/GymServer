@@ -11,7 +11,10 @@ class Activity extends Model
 {
     use HasFactory;
 
-    public function sesions(){
+    protected $fillable = ['name', 'description', 'duration', 'participants'];
+
+    public function sesions()
+    {
         return $this->hasMany(Sesion::class);
     }
 }

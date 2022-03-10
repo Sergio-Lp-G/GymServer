@@ -26,6 +26,8 @@
                     <th>Inicio</th>
                     <th>Fin</th>
                     <th>Actividad Id</th>
+                    <th>Actividad nombre</th>
+
                     <th></th>
                     {{-- <th></th> --}}
                 </tr>
@@ -35,6 +37,8 @@
                     <td>{{$sesion->startime}} </td>
                     <td>{{$sesion->endtime}} </td>
                     <td>{{$sesion->activity_id}} </td>
+                    <td>{{$sesion->activity_name}} </td>
+
                     <td> <a class="btn btn-primary btn-sm" href="/sesions/{{$sesion->id}}">Ver</a></td>
                     {{-- @auth
                     @if (Auth::user()->role_name == 'admin' )

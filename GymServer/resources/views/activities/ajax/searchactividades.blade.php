@@ -5,6 +5,8 @@
     <th>Descripción</th>
     <th>Duración</th>
     <th>Max. Participantes</th>
+    <th></th>
+    <th></th>
 </tr>
 <tr>
     <td>{{$actividad['name']}} </td>

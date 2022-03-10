@@ -26,7 +26,7 @@
                 </div>
                 <hr>
                 <div>
-                    <label for="birthday">Fecha de nacumiento</label>
+                    <label for="birthday">Fecha de nacimiento</label>
                     <input type="text" name="birthday" value="{{$user->birthday}}">
                 </div>
                 <hr>

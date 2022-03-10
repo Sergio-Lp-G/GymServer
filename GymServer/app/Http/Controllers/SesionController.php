@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Models\Sesion;
 use Illuminate\Http\Request;
 use App\Models\Activity;
@@ -21,11 +22,23 @@ class SesionController extends Controller
     public function index()
     {
         //$this->debug_fill_month();
-        $sesions = Sesion::all();
-        $activity = Activity::all();
+        // $sesions = Sesion::orderBy('date')->get();
+        // $sesions->activities;
+
+        //$activity = Activity::all();
+        // return view('sesions.index', ['sesions' => $sesions]); //, 'activity' => $activity
 
 
-        return view('sesions.index', ['sesions' => $sesions, 'activity' => $activity]); //, 'arrDays' => $arrDays
+        $sesions = DB::table('sesions')
+            ->leftJoin('activities', 'sesions.id', '=', 'activities.id')
+            ->select('sesions.id', 'sesions.date', 'sesions.startime', 'sesions.endtime', 'sesions.activity_id', 'activities.name as activity_name')
+            ->orderBy('date')
+            ->get();
+
+
+        //dd($sesions);
+        return view('sesions.index', ['sesions' => $sesions]); //, 'activity' => $activity
+
     }
 
     /**
@@ -49,24 +62,23 @@ class SesionController extends Controller
     {
         //var_dump($request);
         $rules = [
-                    'days' => 'required',
-                    'month' => 'required',
-                    'year' => 'required',
-                    'startime' => 'required',
-                    'endtime' => 'required',
-                    'activity' => 'required'
-                ];
-                $request->validate($rules);
+            'days' => 'required',
+            'month' => 'required',
+            'year' => 'required',
+            'startime' => 'required',
+            'endtime' => 'required',
+            'activity' => 'required'
+        ];
+        $request->validate($rules);
 
         $arrDias = $request['days'];
         //var_dump($dias);
         $month = $request['month'];
-        $date= Carbon::createFromDate(2022,$month,01,'Europe/Madrid');
+        $date = Carbon::createFromDate(2022, $month, 01, 'Europe/Madrid');
 
         $this->fill_month($request['activity'], $date, $request['startime'], $request['endtime'], $arrDias, $month);
 
         return redirect('/sesions');
-        
     }
 
     /**
@@ -141,57 +153,57 @@ class SesionController extends Controller
     public function fill_month($activity_id, $date, $fechaInicio, $fechaFin, $arrDias, $month)
     {
         for ($j = 1; $j <= $date->daysInMonth; $j++) {
-            $dateModifi= Carbon::createFromDate(2022,$month,$j,'Europe/Madrid');
-            if($dateModifi->isSameMonth($date)){
+            $dateModifi = Carbon::createFromDate(2022, $month, $j, 'Europe/Madrid');
+            if ($dateModifi->isSameMonth($date)) {
                 foreach ($arrDias as $dia) {
-                   
+
                     switch ($dia) {
                         case ($dateModifi->isMonday() && $dia == 'lunes'):
-                            $sesion= Sesion::create([
-                                'date'=>$dateModifi,
-                                'startime'=>$fechaInicio,
-                                'endtime'=>$fechaFin,
-                                'activity_id'=>$activity_id
+                            $sesion = Sesion::create([
+                                'date' => $dateModifi,
+                                'startime' => $fechaInicio,
+                                'endtime' => $fechaFin,
+                                'activity_id' => $activity_id
                             ]);
                             break;
 
                         case ($dateModifi->isTuesday() && $dia == 'martes'):
-                            $sesion= Sesion::create([
-                                'date'=>$dateModifi,
-                                'startime'=>$fechaInicio,
-                                'endtime'=>$fechaFin,
-                                'activity_id'=>$activity_id
+                            $sesion = Sesion::create([
+                                'date' => $dateModifi,
+                                'startime' => $fechaInicio,
+                                'endtime' => $fechaFin,
+                                'activity_id' => $activity_id
                             ]);
                             break;
 
                         case ($dateModifi->isWednesday() && $dia == 'miercoles'):
-                            $sesion= Sesion::create([
-                                'date'=>$dateModifi,
-                                'startime'=>$fechaInicio,
-                                'endtime'=>$fechaFin,
-                                'activity_id'=>$activity_id
+                            $sesion = Sesion::create([
+                                'date' => $dateModifi,
+                                'startime' => $fechaInicio,
+                                'endtime' => $fechaFin,
+                                'activity_id' => $activity_id
                             ]);
                             break;
 
                         case ($dateModifi->isThursday() && $dia == 'jueves'):
-                            $sesion= Sesion::create([
-                                'date'=>$dateModifi,
-                                'startime'=>$fechaInicio,
-                                'endtime'=>$fechaFin,
-                                'activity_id'=>$activity_id
+                            $sesion = Sesion::create([
+                                'date' => $dateModifi,
+                                'startime' => $fechaInicio,
+                                'endtime' => $fechaFin,
+                                'activity_id' => $activity_id
                             ]);
                             break;
 
                         case ($dateModifi->isFriday() && $dia == 'viernes'):
-                            $sesion= Sesion::create([
-                                'date'=>$dateModifi,
-                                'startime'=>$fechaInicio,
-                                'endtime'=>$fechaFin,
-                                'activity_id'=>$activity_id
+                            $sesion = Sesion::create([
+                                'date' => $dateModifi,
+                                'startime' => $fechaInicio,
+                                'endtime' => $fechaFin,
+                                'activity_id' => $activity_id
                             ]);
                             break;
                     }
-                } 
+                }
             }
         }
 
@@ -214,7 +226,7 @@ class SesionController extends Controller
     //             $sesion->endtime = $horaFin->format('Y-m-d h:i:s');
     //             $sesion->activity_id = $activity_id;
     //             $sesion->save();
-                
+
     //             // $sesions[] = $sesion;
     //             // echo $dia->englishDayOfWeek;
     //         }

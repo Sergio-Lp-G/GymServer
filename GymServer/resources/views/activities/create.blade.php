@@ -4,27 +4,39 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <h1>AQUI EN PRINCIPIO SE CREA UNA ACTIVIDAD </h1>
+            <h1>Nueva Actividad</h1>
             <form action="/activities" method="post">
                 @csrf
                 <div>
-                    <label for="activity">Actividad</label>
-                    <input type="text" name="actividad" id="actividad">
+                    <label for="name">Actividad</label>
+                    <input type="text" name="name" id="name">
+                    @error('name')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div>
-                    <label for="descripcion">Descripción</label>
-                    <input type="text" name="descripcion" id="descripcion">
+                    <label for="description">Descripción</label>
+                    <input type="text" name="description" id="description">
+                    @error('description')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div>
-                    <label for="duracion">Duración</label>
-                    <input type="number" name="duracion" id="duracion">
+                    <label for="duration">Duración</label>
+                    <input type="number" name="duration" id="duration">
+                    @error('duration')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div>
-                    <label for="maxPart">Máximo de participantes</label>
-                    <input type="number" name="maxPart" id="maxPart">
+                    <label for="participants">Máximo de participantes</label>
+                    <input type="number" name="participants" id="participants">
+                    @error('participants')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Activity;
-
+use Illuminate\Support\Facades\Auth;
 
 class ActivityController extends Controller
 {
@@ -27,8 +27,7 @@ class ActivityController extends Controller
      */
     public function create()
     {
-        return view('activities.create', []);
-        //return view('activities/create');
+        return view('activities.create');
     }
 
     /**
@@ -39,6 +38,7 @@ class ActivityController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request);
         $rules = [
             'name' => 'required',
             'description' => 'required',
@@ -47,16 +47,24 @@ class ActivityController extends Controller
         ];
         $request->validate($rules);
 
-        //return view('activities/store');
-        //dd($request);
-        $activity = new Activity;
-
-        $activity->name = $request->actividad;
-        $activity->description = $request->descripcion;
-        $activity->duration = $request->duracion;
-        $activity->participants = $request->maxPart;
-        $activity->save();
+        // $activity = new Activity;
+        // $activity->name = $request->name;
+        // $activity->description = $request->description;
+        // $activity->duration = $request->duration;
+        // $activity->participants = $request->participants;
+        // $dur = (int)$request['duration'];
+        // dd($dur);
+        $activity = Activity::create([
+            'name' => $request['name'],
+            'description' => $request['description'],
+            'duration' => (int)$request['duration'],
+            'participants' => (int)$request['participants']
+        ]);
+        //dd($activity);
+        //$activity->save();
         return redirect('/activities');
+        //return redirect()->route('activities.index');
+
     }
 
     /**

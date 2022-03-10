@@ -24,24 +24,16 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/',  [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('users', UserController::class)->middleware('auth');//para controlar que solo los registrados entren
+Route::resource('users', UserController::class)->middleware('auth'); //para controlar que solo los registrados entren
 
 Route::get('/activities/busqueda', [ActivityController::class, 'busqueda']);
 Route::get('/activities/search', [ActivityController::class, 'search']);
 Route::post('/activities/filter', [ActivityController::class, 'filter']);
+Route::post('activity/update', [ActivityController::class, 'update']);
 
-Route::resource('bookings', BookingController::class)->middleware('auth');//
+Route::resource('bookings', BookingController::class)->middleware('auth'); //
 Route::resource('activities', ActivityController::class)->middleware('auth');
 Route::resource('sesions', SesionController::class)->middleware('auth');
 Route::get('sesions/sign/{id}', [SesionController::class, 'sign']);
-
-/*Route::get('activities/create', [ActivityController::class, 'create']);
-Route::get('activities', [ActivityController::class, 'index']);
-Route::get('activities/create', [ActivityController::class, 'create']);
-Route::get('activities/show/{id}', [ActivityController::class, 'show']);
-Route::get('activities/edit/{id}', [ActivityController::class, 'edit']);
-Route::post('activities', [ActivityController::class, 'store']);
-Route::put('activities/update/{request}/{id}', [ActivityController::class, 'destroy']);
-Route::delete('activities/store/{request}', [ActivityController::class, 'destroy']);*/
 
 Auth::routes();
