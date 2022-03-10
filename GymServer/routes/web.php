@@ -26,6 +26,7 @@ Route::get('/',  [App\Http\Controllers\HomeController::class, 'index'])->name('h
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('users', UserController::class)->middleware('auth'); //para controlar que solo los registrados entren
 
+Route::post('/activities/{id}/destroy', [ActivityController::class, 'destroy']);
 Route::get('/activities/busqueda', [ActivityController::class, 'busqueda']);
 Route::get('/activities/search', [ActivityController::class, 'search']);
 Route::post('/activities/filter', [ActivityController::class, 'filter']);

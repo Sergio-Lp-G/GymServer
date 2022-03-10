@@ -15,8 +15,8 @@ class ActivityController extends Controller
      */
     public function index()
     {
+        // recogemos todas las actividades desde la base de datos y la pasamos a la vista
         $activities = Activity::all();
-        // var_dump($activities);
         return view('activities.index', ['activities' => $activities]);
     }
 
@@ -27,6 +27,7 @@ class ActivityController extends Controller
      */
     public function create()
     {
+        //Mostramos la vista de creacion de nuevas actividades.
         return view('activities.create');
     }
 
@@ -38,7 +39,7 @@ class ActivityController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request);
+        //Validacion de las variables recogidas desde la vista. Si no se reciben no se continua.
         $rules = [
             'name' => 'required',
             'description' => 'required',
@@ -47,24 +48,16 @@ class ActivityController extends Controller
         ];
         $request->validate($rules);
 
-        // $activity = new Activity;
-        // $activity->name = $request->name;
-        // $activity->description = $request->description;
-        // $activity->duration = $request->duration;
-        // $activity->participants = $request->participants;
-        // $dur = (int)$request['duration'];
-        // dd($dur);
+        //Una vez validado se crea la nueva actividad en la db.
         $activity = Activity::create([
             'name' => $request['name'],
             'description' => $request['description'],
             'duration' => (int)$request['duration'],
             'participants' => (int)$request['participants']
         ]);
-        //dd($activity);
-        //$activity->save();
-        return redirect('/activities');
-        //return redirect()->route('activities.index');
 
+        //Redirecionamos a la pagina principal de actividades.
+        return redirect('/activities');
     }
 
     /**
@@ -75,6 +68,7 @@ class ActivityController extends Controller
      */
     public function show($id)
     {
+        //
         $activity = Activity::find($id);
         return view('activities.show', ['activity' => $activity]); //
     }
@@ -87,18 +81,15 @@ class ActivityController extends Controller
      */
     public function edit($id)
     {
+        //Recogemos la id de la actividad deseada y devolvemos todos sus datos a una vista "show"
         $activity = Activity::find($id);
         return view('activities.edit', ['activity' => $activity]);
     }
 
     public function filter(Request $request)
     {
-        // id = $request->input('id');
+        //Usando ajax realizamos la busqueda de las sesiones de la actividad deseada.
         $sesions = $request->filter;
-        //$activityes =$activitys;
-        //$activitys = activity::where('activity_id', 'LIKE', id)->get();
-        //return var_dump($activitys); //devuelve JSON
-        //otra opción, devolver código html
         return view('activities.ajax.filter', ['sesions' => $sesions]);
     }
 
@@ -111,6 +102,7 @@ class ActivityController extends Controller
      */
     public function update(Request $request, Activity $activity)
     {
+        //Validamos que están todos los parametros deseados.
         $rules = [
             'name' => 'required',
             'description' => 'required',
@@ -119,7 +111,7 @@ class ActivityController extends Controller
         ];
         $request->validate($rules);
 
-
+        //Actualizamos los valores de la actividad en la db
         $activity->id = $request->id;
 
         $activity->name = $request->name;
@@ -137,10 +129,11 @@ class ActivityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Activity $activity)
     {
-        //        return view('activities/destroy');
-        return 'Método destroy';
+        //Metodo para borrar la actividad deseada.
+        $activity->delete();
+        return back()->with('status', 'Actividad borrada');
     }
 
     public function search(Request $request)

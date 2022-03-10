@@ -32,6 +32,8 @@
                     <th>Sesiones</th>
                     <th></th>
                     <th></th>
+                    <th></th>
+                    <th></th>
                 </tr>
                 @forelse ($activities as $activity)
                 <tr>
@@ -45,10 +47,18 @@
                     @auth
                     @if (Auth::user()->role_name == 'admin' )
                     <td> <a class="btn btn-primary btn-sm" href="/activities/{{$activity->id}}/edit">Editar</a></td>
+                    <td>
+                        <form action="/activities/{{$activity->id}}" method="post">
+                            @csrf
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input class="btn btn-primary btn-sm" type="submit" value="Borrar">
+                        </form>
+                    </td>
+
                     @endif
                     <td> </td>
+                    <td> </td>
                     @endauth
-
 
                 </tr>
                 @empty

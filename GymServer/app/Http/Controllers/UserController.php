@@ -16,11 +16,12 @@ class UserController extends Controller
      */
     public function index()
     {
+        //buscamos todos los usuarios y los mostramos.
         $this->addsesion();
         $users = User::all();
         return view('users.index', ['users' => $users]);
     }
-    
+
     public function addsesion()
     {
         //necesitamos un id_usuario y un id_rol
@@ -49,6 +50,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        //validamos los parametros
         $rules = [
             'name' => 'required',
             'dni' => 'required',
@@ -62,7 +64,7 @@ class UserController extends Controller
         ];
         $request->validate($rules);
 
-
+        //Creamos nuevo usuario y lo guardamos en la db
         $user = new User;
 
         $user->name = $request->name;
@@ -87,6 +89,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
+        //mostramos los parametros del usuarios seleccionado.
         $user = User::find($id);
         return view('users.show', ['user' => $user]);
     }
@@ -99,6 +102,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        //Llamamos a la vista de editar pasando la id del usuario para poder editar solo sus parametros.
         $user = User::find($id);
         return view('users.edit', ['user' => $user]);
     }
@@ -112,6 +116,7 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        //validacion y actualizacion de datos en la db
         $rules = [
             'id' => 'required',
             'name' => 'required',
@@ -125,7 +130,7 @@ class UserController extends Controller
             'role_name' => 'required'
         ];
         $request->validate($rules);
-        
+
         $user->id = $request->id;
 
         $user->name = $request->name;

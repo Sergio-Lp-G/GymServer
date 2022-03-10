@@ -13,7 +13,7 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
     public function sesions()
     {
-        return $this->belongsToMany(Sesion::class);
+        return $this->belongsToMany(Sesion::class); //un usuario muchas sesiones
     }
 
     public function addSesion(Sesion $sesion)
@@ -25,6 +25,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    //asignacion masiva cobre estos campos
     protected $fillable = [
         'name',
         'email',
@@ -36,6 +37,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    //campos ocultos
     protected $hidden = [
         'password',
         'remember_token',

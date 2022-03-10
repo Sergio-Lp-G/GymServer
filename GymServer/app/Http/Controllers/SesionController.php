@@ -21,22 +21,24 @@ class SesionController extends Controller
      */
     public function index()
     {
-        //$this->debug_fill_month();
-        // $sesions = Sesion::orderBy('date')->get();
-        // $sesions->activities;
+        //Metodos para mostrar todas las sesiones con los nombres de actividades
+
+        //$sesions = Sesion::orderBy('date')->get();
+        //$sesions->activities; Esto no funciona
+        //return view('sesions.index', ['sesions' => $sesions]);
+
 
         //$activity = Activity::all();
-        // return view('sesions.index', ['sesions' => $sesions]); //, 'activity' => $activity
+        //return view('sesions.index', ['sesions' => $sesions, 'activity' => $activity]); //No muestra todos los nombres de actividades
 
 
-        $sesions = DB::table('sesions')
+        $sesions = DB::table('sesions') //Esta consulta tampoco muestra todos los nombres de las actividades
             ->leftJoin('activities', 'sesions.id', '=', 'activities.id')
             ->select('sesions.id', 'sesions.date', 'sesions.startime', 'sesions.endtime', 'sesions.activity_id', 'activities.name as activity_name')
             ->orderBy('date')
             ->get();
 
-
-        //dd($sesions);
+        //Devolvemos las sesiones a la vista
         return view('sesions.index', ['sesions' => $sesions]); //, 'activity' => $activity
 
     }
@@ -48,6 +50,7 @@ class SesionController extends Controller
      */
     public function create()
     {
+        //Creación de una nueva sesion con la lista de actividades para el desplegable
         $activities = Activity::all();
         return view('sesions.create', ['activities' => $activities]);
     }
@@ -60,7 +63,7 @@ class SesionController extends Controller
      */
     public function store(Request $request)
     {
-        //var_dump($request);
+        //Validamos los parametros que nos llegan desde la vista
         $rules = [
             'days' => 'required',
             'month' => 'required',
@@ -71,8 +74,8 @@ class SesionController extends Controller
         ];
         $request->validate($rules);
 
+        //Transformamos los parametros para poder trabajar con ellos.
         $arrDias = $request['days'];
-        //var_dump($dias);
         $month = $request['month'];
         $date = Carbon::createFromDate(2022, $month, 01, 'Europe/Madrid');
 
@@ -114,9 +117,6 @@ class SesionController extends Controller
     public function update(Request $request, Sesion $sesion)
     {
         //
-
-
-
     }
 
     /**
@@ -132,26 +132,18 @@ class SesionController extends Controller
 
     public function debug_fill_month()
     {
-
+        //metodo inutilizado
         $fechaInicio = Carbon::create(2000, 1, 35, 16, 0, 0);
         $fechaFin = Carbon::create(2000, 1, 35, 20, 0, 0);
 
-        // $arrDias = ['Monday','Friday'];
         $arrDias = ['Monday'];
 
-        // $activity = Activity::find( $id );
         $activity = Activity::find(1);
-
-        // echo $fecha->hour;
-        // echo $fecha->minute;
-        // echo $fecha->second;
-
-        //var_dump( $this->fill_month( $activity, $fechaInicio, $fechaFin, $arrDias ) );
-
     }
 
     public function fill_month($activity_id, $date, $fechaInicio, $fechaFin, $arrDias, $month)
     {
+        //Para cada dia presente en el mes creamos la sesion.
         for ($j = 1; $j <= $date->daysInMonth; $j++) {
             $dateModifi = Carbon::createFromDate(2022, $month, $j, 'Europe/Madrid');
             if ($dateModifi->isSameMonth($date)) {
@@ -206,37 +198,9 @@ class SesionController extends Controller
                 }
             }
         }
-
-        //return redirect('/sesions');
     }
 
-    // public function fill_month($activity_id, $fechaInicio, $fechaFin, $arrDias)
-    // {
 
-    //     //var_dump($activity_id, $fechaInicio, $fechaFin, $arrDias);
-    //     for ($i = 1; $i < $fechaInicio->daysInMonth + 1; ++$i) {
-
-    //         $horaInicio = Carbon::create($fechaInicio->year, $fechaInicio->month, $i, $fechaInicio->hour, $fechaInicio->minute, $fechaInicio->second);
-    //         $horaFin = Carbon::create($fechaFin->year, $fechaFin->month, $i, $fechaFin->hour, $fechaFin->minute, $fechaFin->second);
-    //         var_dump($horaInicio, $horaFin);
-    //         if (in_array($horaInicio->englishDayOfWeek, $arrDias)) {
-
-    //             $sesion = new Sesion;
-    //             $sesion->startime = $horaInicio->format('Y-m-d h:i:s');
-    //             $sesion->endtime = $horaFin->format('Y-m-d h:i:s');
-    //             $sesion->activity_id = $activity_id;
-    //             $sesion->save();
-
-    //             // $sesions[] = $sesion;
-    //             // echo $dia->englishDayOfWeek;
-    //         }
-
-    //         //$dates[] = Carbon::createFromDate($fecha->year, $fecha->month, $i, $fecha->hour, $fecha->minute,$fecha->second )->format('Y-m-d h:i:s');
-    //     }
-
-    //     // return $sesions;
-    //     //return redirect('/sesions');
-    // }
 
     public function sign($id)
     {

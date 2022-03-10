@@ -11,10 +11,10 @@ class Activity extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description', 'duration', 'participants'];
+    protected $fillable = ['name', 'description', 'duration', 'participants'];//asignacion masiva
 
     public function sesions()
     {
-        return $this->hasMany(Sesion::class);
+        return $this->hasMany(Sesion::class);//relacion 1 actividad tiene muchas sesiones.
     }
 }
